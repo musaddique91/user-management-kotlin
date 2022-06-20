@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.3.xsd">
+    <changeSet id="2" author="Musaddique">
+        <createTable tableName="users" >
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="email" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="first_name" type="varchar(500)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="last_name" type="varchar(500)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="phone" type="varchar(100)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="designation" type="varchar(100)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="auth_id" type="bigint">
+                <constraints
+                        referencedTableName="auth"
+                        referencedColumnNames="id"
+                        foreignKeyName="auth_id_user_fk"
+                        nullable="true"/>
+            </column>
+            <column name="created_at" type="datetime" defaultValueComputed="now( )">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="datetime">
+                <constraints nullable="true"/>
+            </column>
+            <column name="created_by" type="varchar(100)" defaultValue="db_admin">
+                <constraints nullable="false"/>
+            </column>
+            <column name="modified_by" type="varchar(100)">
+                <constraints nullable="true"/>
+            </column>
+        </createTable>
+    </changeSet>
+</databaseChangeLog>

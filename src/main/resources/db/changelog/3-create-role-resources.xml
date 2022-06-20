@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.3.xsd">
+    <changeSet id="3" author="Musaddique">
+        <!--        resource table -->
+        <createTable tableName="resources">
+            <column name="code" type="varchar(50)">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="varchar(100)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <!--        role table -->
+        <createTable tableName="role">
+            <column name="id" type="bigint">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="varchar(100)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <!--        resource_assignment table -->
+        <createTable tableName="resource_assignment">
+            <column name="id" type="bigint">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="role_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="resources" type="varchar(2000)">
+                <constraints nullable="true"/>
+            </column>
+        </createTable>
+
+        <!--        role_assignment table -->
+        <createTable tableName="role_assignment">
+            <column name="id" type="bigint">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="user_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="roles" type="varchar(2000)">
+                <constraints nullable="true"/>
+            </column>
+        </createTable>
+
+        <!--        default resources entry -->
+        <insert tableName="resources">
+            <column name="code" value="MENU_SETTING"></column>
+            <column name="name" value="settings"></column>
+        </insert>
+        <insert tableName="resources">
+            <column name="code" value="MENU_USER_MANAGEMENT"></column>
+            <column name="name" value="user management"></column>
+        </insert>
+        <insert tableName="resources">
+            <column name="code" value="ROLE_MANAGEMENT"></column>
+            <column name="name" value="role management"></column>
+        </insert>
+        <insert tableName="resources">
+            <column name="code" value="TEMPLATE_MANAGEMENT"></column>
+            <column name="name" value="template management"></column>
+        </insert>
+        <insert tableName="resources">
+            <column name="code" value="APPROVAL_MANAGEMENT"></column>
+            <column name="name" value="approval management"></column>
+        </insert>
+        <insert tableName="resources">
+            <column name="code" value="APPROVAL_SETTING"></column>
+            <column name="name" value="approval settings"></column>
+        </insert>
+
+        <!--        default role entry -->
+        <insert tableName="role">
+            <column name="id" value="1"></column>
+            <column name="name" value="power user"></column>
+        </insert>
+
+        <!--        default resource assignment entry -->
+        <insert tableName="resource_assignment">
+            <column name="id" value="1"></column>
+            <column name="role_id" value="1"></column>
+            <column name="resources"
+                    value="MENU_SETTING,MENU_USER_MANAGEMENT,ROLE_MANAGEMENT,TEMPLATE_MANAGEMENT,APPROVAL_MANAGEMENT,APPROVAL_SETTING"></column>
+        </insert>
+    </changeSet>
+</databaseChangeLog>

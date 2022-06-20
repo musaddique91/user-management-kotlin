@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.3.xsd">
+    <changeSet id="1" author="Musaddique">
+        <createTable tableName="auth">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="username" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="password" type="varchar(500)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="enable" type="boolean" defaultValueBoolean="true">
+                <constraints nullable="false"/>
+            </column>
+            <column name="is_temp_password" type="boolean" defaultValue="0">
+                <constraints nullable="true"/>
+            </column>
+            <column name="created_at" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="datetime">
+                <constraints nullable="true"/>
+            </column>
+        </createTable>
+        <insert tableName="auth">
+            <column name="username" value="admin"></column>
+            <column name="password" value="$2a$10$eNGEj6n/jbC9uQz6C6HVvuVE.hQ9R7qwNDSQa/zuk.D7dKukhYA3y"></column>
+            <column name="enable" valueBoolean="true"></column>
+            <column name="is_temp_password" valueBoolean="false"></column>
+            <column name="created_at" value="now()"></column>
+            <column name="updated_at" value="now()"></column>
+        </insert>
+    </changeSet>
+</databaseChangeLog>

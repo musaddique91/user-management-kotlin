@@ -1,0 +1,14 @@
+version: '3.7'
+services:
+  approval-system:
+    image: musa/approval-app
+    container_name: approval-app
+    ports:
+      - '9090:8080'    
+    restart: always
+    environment:
+        DB_HOST: mysql_db
+networks:
+  default:
+    external:
+      name: musaddique-net

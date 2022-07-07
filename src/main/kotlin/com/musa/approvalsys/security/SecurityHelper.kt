@@ -10,7 +10,7 @@ class SecurityHelper {
             return try {
                 val authentication =
                     SecurityContextHolder.getContext().authentication as UsernamePasswordAuthenticationToken
-                (authentication.details as UserDetails).username
+                (authentication.principal as UserDetails).username
             } catch (e: Exception) {
                 "System"
             }

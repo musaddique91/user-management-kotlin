@@ -12,8 +12,6 @@ class StringListConvertor() : AttributeConverter<List<String>, String> {
      * column
      */
     override fun convertToDatabaseColumn(attribute: List<String>?): String {
-        val l = listOf("a","b","c")
-
         return if (!attribute.isNullOrEmpty()) {
             attribute.joinToString(",")
         } else {

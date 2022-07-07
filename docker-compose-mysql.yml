@@ -1,0 +1,17 @@
+version: '3.3'
+services:
+  mysql_db:
+    container_name: mysql_db
+    image: mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: approval_system
+      MYSQL_USER: musa
+      MYSQL_PASSWORD: musa
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - 6603:3306
+networks:
+  default:
+    external:
+      name: musaddique-net

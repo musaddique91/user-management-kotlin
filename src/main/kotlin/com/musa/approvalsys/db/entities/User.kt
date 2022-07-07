@@ -1,8 +1,6 @@
 package com.musa.approvalsys.db.entities
 
 import com.quickget.backend.models.order.AuditableAttributes
-import com.quickget.backend.models.order.AuditableDateAttributes
-import com.quickget.backend.models.order.AuditableUserAttributes
 import javax.persistence.Entity
 import javax.persistence.GeneratedValue
 import javax.persistence.GenerationType
@@ -18,5 +16,6 @@ class User(
     var lastName: String?,
     var phone: String?,
     var designation: String?,
-    var authId: Long
+    var authId: Long,
+    var roleId: Long?
 ) : AuditableAttributes()

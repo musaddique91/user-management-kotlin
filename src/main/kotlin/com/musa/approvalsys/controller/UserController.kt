@@ -1,6 +1,7 @@
 package com.musa.approvalsys.controller
 
 import com.musa.approvalsys.dto.user.UserDTO
+import com.musa.approvalsys.security.SecurityHelper
 import com.musa.approvalsys.services.user.UserService
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
@@ -39,4 +40,9 @@ class UserController(private val userService: UserService) {
 
     @DeleteMapping("user/{id}")
     fun delete(@PathVariable id: Long) = ok(userService.delete(id))
+
+    @GetMapping("session")
+    fun session(): ResponseEntity<UserDTO> {
+        return ok(userService.user(SecurityHelper.getUsername()))
+    }
 }

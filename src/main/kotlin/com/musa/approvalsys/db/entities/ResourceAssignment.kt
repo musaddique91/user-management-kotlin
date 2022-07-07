@@ -1,7 +1,5 @@
 package com.musa.approvalsys.db.entities
 
-import com.musa.approvalsys.db.convertor.StringListConvertor
-import javax.persistence.Convert
 import javax.persistence.Entity
 import javax.persistence.GeneratedValue
 import javax.persistence.GenerationType
@@ -13,6 +11,7 @@ import javax.persistence.Table
 class ResourceAssignment(
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY) var id: Long,
     var roleId: Long,
-    @Convert(converter = StringListConvertor::class)
-    var resources: List<String>
+    var resource: String,
+    var isRead: Boolean,
+    var isWrite: Boolean
 )

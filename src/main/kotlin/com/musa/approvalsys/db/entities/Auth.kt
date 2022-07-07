@@ -15,4 +15,5 @@ class Auth(
     var password: String,
     var enable: Boolean,
     var isTempPassword: Boolean,
+    var uuidToken: String? = null,
 ) : AuditableDateAttributes()

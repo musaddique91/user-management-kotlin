@@ -10,5 +10,7 @@ data class UserDTO(
     var lastName: String?,
     var phone: String?,
     var designation: String?,
-    var createdDate: LocalDateTime?
+    var enable: Boolean,
+    var createdDate: LocalDateTime?,
+    var roleId: Long?
 )

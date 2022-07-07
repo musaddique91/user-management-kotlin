@@ -9,4 +9,6 @@ class ApprovalProperties {
     lateinit var jwtSecret: String
     @Value("\${jwt.token.validity_inhours}")
     var jwtTokenValidity: Long = 5L
+    @Value("\${mail.from}")
+    lateinit var mailFrom: String
 }

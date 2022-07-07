@@ -17,7 +17,7 @@
 
         <!--        role table -->
         <createTable tableName="role">
-            <column name="id" type="bigint">
+            <column name="id" type="bigint" autoIncrement="true">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="name" type="varchar(100)">
@@ -27,24 +27,36 @@
 
         <!--        resource_assignment table -->
         <createTable tableName="resource_assignment">
-            <column name="id" type="bigint">
+            <column name="id" type="bigint" autoIncrement="true">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="role_id" type="bigint">
+                <constraints nullable="false"
+                             referencedTableName="role"
+                             foreignKeyName="role_resource_fk"
+                             referencedColumnNames="id"/>
+            </column>
+            <column name="resource" type="varchar(100)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="is_read" type="boolean" defaultValueBoolean="false">
                 <constraints nullable="false"/>
             </column>
-            <column name="resources" type="varchar(2000)">
-                <constraints nullable="true"/>
+            <column name="is_write" type="boolean" defaultValueBoolean="false">
+                <constraints nullable="false"/>
             </column>
         </createTable>
 
         <!--        role_assignment table -->
         <createTable tableName="role_assignment">
-            <column name="id" type="bigint">
+            <column name="id" type="bigint" autoIncrement="true">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="user_id" type="bigint">
-                <constraints nullable="false"/>
+                <constraints nullable="false"
+                             foreignKeyName="user_role_fk"
+                             referencedTableName="users"
+                             referencedColumnNames="id"/>
             </column>
             <column name="roles" type="varchar(2000)">
                 <constraints nullable="true"/>
@@ -58,6 +70,10 @@
         </insert>
         <insert tableName="resources">
             <column name="code" value="MENU_USER_MANAGEMENT"></column>
+            <column name="name" value="user and role management"></column>
+        </insert>
+        <insert tableName="resources">
+            <column name="code" value="USER_MANAGEMENT"></column>
             <column name="name" value="user management"></column>
         </insert>
         <insert tableName="resources">
@@ -87,8 +103,44 @@
         <insert tableName="resource_assignment">
             <column name="id" value="1"></column>
             <column name="role_id" value="1"></column>
-            <column name="resources"
-                    value="MENU_SETTING,MENU_USER_MANAGEMENT,ROLE_MANAGEMENT,TEMPLATE_MANAGEMENT,APPROVAL_MANAGEMENT,APPROVAL_SETTING"></column>
+            <column name="resource" value="MENU_SETTING"></column>
+            <column name="is_read" valueBoolean="true"></column>
+            <column name="is_write" valueBoolean="true"></column>
+        </insert>
+        <insert tableName="resource_assignment">
+            <column name="id" value="2"></column>
+            <column name="role_id" value="1"></column>
+            <column name="resource" value="MENU_USER_MANAGEMENT"></column>
+            <column name="is_read" valueBoolean="true"></column>
+            <column name="is_write" valueBoolean="true"></column>
+        </insert>
+        <insert tableName="resource_assignment">
+            <column name="id" value="3"></column>
+            <column name="role_id" value="1"></column>
+            <column name="resource" value="USER_MANAGEMENT"></column>
+            <column name="is_read" valueBoolean="true"></column>
+            <column name="is_write" valueBoolean="true"></column>
+        </insert>
+        <insert tableName="resource_assignment">
+            <column name="id" value="4"></column>
+            <column name="role_id" value="1"></column>
+            <column name="resource" value="ROLE_MANAGEMENT"></column>
+            <column name="is_read" valueBoolean="true"></column>
+            <column name="is_write" valueBoolean="true"></column>
+        </insert>
+        <insert tableName="resource_assignment">
+            <column name="id" value="5"></column>
+            <column name="role_id" value="1"></column>
+            <column name="resource" value="TEMPLATE_MANAGEMENT"></column>
+            <column name="is_read" valueBoolean="true"></column>
+            <column name="is_write" valueBoolean="true"></column>
+        </insert>
+        <insert tableName="resource_assignment">
+            <column name="id" value="6"></column>
+            <column name="role_id" value="1"></column>
+            <column name="resource" value="APPROVAL_SETTING"></column>
+            <column name="is_read" valueBoolean="true"></column>
+            <column name="is_write" valueBoolean="true"></column>
         </insert>
     </changeSet>
 </databaseChangeLog>
